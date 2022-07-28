@@ -18,12 +18,6 @@ POST_MAKE_BUILD_ROOT: []
 PRE_BUILD_REPO: []
 BUILD_REPO:
   #- jcagenchangelog -i ./changelog.txt -o ./$DESTDIR/usr/share/doc/${PACKAGE_NAME}/changelog.Debian -p ${PACKAGE_NAME}
-  - mkdir -p build
-  - cd build
-  - cmake -DCMAKE_BUILD_TYPE=Release ..;
-  - make -j$(nproc);
-  - sudo make install;
-  - cd ..
   - mv build/lib/libFields2Cover.so ${DESTDIR}/usr/lib/libjcaFields2Cover.so
   - cp -r include/* ${DESTDIR}/usr/include/jca-fields2cover/
 
@@ -32,7 +26,13 @@ POST_BUILD_REPO: []
 
 # Build the files that go inside the repo
 PRE_BUILD_FILES: []
-BUILD_FILES: []
+BUILD_FILES:
+  - mkdir -p build
+  - cd build
+  - cmake -DCMAKE_BUILD_TYPE=Release ..;
+  - make -j$(nproc);
+  - sudo make install;
+  - cd ..
 POST_BUILD_FILES: []
 
 # Clean Workspace
