@@ -18,7 +18,7 @@ POST_MAKE_BUILD_ROOT: []
 PRE_BUILD_REPO: []
 BUILD_REPO:
   #- jcagenchangelog -i ./changelog.txt -o ./$DESTDIR/usr/share/doc/${PACKAGE_NAME}/changelog.Debian -p ${PACKAGE_NAME}
-  - mv build/lib/libFields2Cover.so ${DESTDIR}/usr/lib/libjcaFields2Cover.so
+  - mv build/lib/libFields2Cover.so ${DESTDIR}/usr/lib/libjcafields2cover.so
   - cp -r include/* ${DESTDIR}/usr/include/jca-fields2cover/
 
 POST_BUILD_REPO: []
@@ -27,7 +27,7 @@ POST_BUILD_REPO: []
 # Build the files that go inside the repo
 PRE_BUILD_FILES: []
 BUILD_FILES:
-  - docker build -f Dockerfile-build . -t jca-fields2cover:$JOB_NAME
+  - docker build -f Dockerfile-build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . -t jca-fields2cover:$JOB_NAME
   - docker run -v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME
 POST_BUILD_FILES: []
 

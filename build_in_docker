@@ -5,3 +5,5 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j$(nproc)
 make install
+# This user was added in docker build, do this so we can access files outside container
+chown -r user:user build
