@@ -27,12 +27,8 @@ POST_BUILD_REPO: []
 # Build the files that go inside the repo
 PRE_BUILD_FILES: []
 BUILD_FILES:
-  - mkdir -p build
-  - cd build
-  - cmake -DCMAKE_BUILD_TYPE=Release ..;
-  - make -j$(nproc);
-  - make install;
-  - cd ..
+  - docker build -f Dockerfile-build . -t jca-fields2cover:$JOB_NAME
+  - docker run -v $PWD:/workspace/fields2cover -entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME
 POST_BUILD_FILES: []
 
 # Clean Workspace
