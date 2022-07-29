@@ -28,7 +28,7 @@ POST_BUILD_REPO: []
 PRE_BUILD_FILES: []
 BUILD_FILES:
   - docker build -f Dockerfile-build . -t jca-fields2cover:$JOB_NAME
-  - docker run -v $PWD:/workspace/fields2cover -entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME
+  - docker run -v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME
 POST_BUILD_FILES: []
 
 # Clean Workspace
