@@ -9,7 +9,7 @@ def build_script = "jcabuilddeb"
 def old_repo_script = "addtorepo"
 def repo_script = "publishrepo"
 def checkpackage_script = "checkpackage"
-def repo_url = "jca.repo.jca"
+def repo_url = "jcaros.repo.jca"
 
 // Unit Tests
 def unit_tests = "./tests/u*.xml"
