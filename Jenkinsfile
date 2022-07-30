@@ -73,32 +73,19 @@ pipeline {
                     label 'Linux-new'
                     filename 'Dockerfile.build'
                     additionalBuildArgs  '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
-                    args "-v $PWD:/workspace/fields2cover -w /workspace/fields2cover"
                 }
             }
 			steps {
-				//Example way of adding extra CONFLICTS if needed, maybe initially needed to transition from
-				//Older packages to newer meta packages
-				//sh("CONFLICTS='package-unstable, package-orphan, package-rc' $build_script -a armhf -b stable")
-
 				script {
-				    /*if (env.BRANCH_NAME == "$develop_branch") {
-				        sh("$build_script -a all -b $develop_build -s")
-				    } else if (env.BRANCH_NAME == "$master_branch") {
-				        sh("$build_script -a all -b $master_build -s")
-				    } else if (env.BRANCH_NAME == "$release_branch -s") {
-				        sh("$build_script -a all -b $release_build -s")
-				    } else {
-				        sh("$build_script -a all -s")
-				    }
-				    sh ("docker build -f Dockerfile-build --build-arg USER_ID=${id -u} --build-arg GROUP_ID=${id -g} . -t jca-fields2cover:$JOB_NAME")
-				    sh("docker run -v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME")
-				    sh("mv _package deploy")*/
-				    sh("/workspace/fields2cover/build_in_docker")
+				    sh("./build_in_docker")
+				    sh("mv _packages deploy")
 				}
-
-				sh("$checkpackage_script $binaries")
 			}
+		}
+		post {
+		    success {
+		        archiveArtifacts artifacts: binaries, fingerprint: true
+		    }
 		}
 	}
 
