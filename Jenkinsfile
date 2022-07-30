@@ -74,7 +74,7 @@ pipeline {
 				//sh("CONFLICTS='package-unstable, package-orphan, package-rc' $build_script -a armhf -b stable")
 
 				script {
-				    if (env.BRANCH_NAME == "$develop_branch") {
+				    /**if (env.BRANCH_NAME == "$develop_branch") {
 				        sh("$build_script -a all -b $develop_build -s")
 				    } else if (env.BRANCH_NAME == "$master_branch") {
 				        sh("$build_script -a all -b $master_build -s")
@@ -82,7 +82,10 @@ pipeline {
 				        sh("$build_script -a all -b $release_build -s")
 				    } else {
 				        sh("$build_script -a all -s")
-				    }
+				    }**/
+				    sh ("docker build -f Dockerfile-build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . -t jca-fields2cover:$JOB_NAME")
+				    sh("docker run -v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME")
+				    sh("mv _package deploy")
 				}
 
 				sh("$checkpackage_script $binaries")

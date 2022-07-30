@@ -3,7 +3,8 @@
 mkdir build
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
-make -j$(nproc)
-make install
+cmake --build .
+cpack -G DEB
+
 # This user was added in docker build, do this so we can access files outside container
-chown -R user:user .
+chown -R user:user ../_packages
