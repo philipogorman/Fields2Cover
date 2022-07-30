@@ -83,7 +83,7 @@ pipeline {
 				    } else {
 				        sh("$build_script -a all -s")
 				    }*/
-				    sh ("docker build -f Dockerfile-build --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . -t jca-fields2cover:$JOB_NAME")
+				    sh ("docker build -f Dockerfile-build --build-arg USER_ID=${id -u} --build-arg GROUP_ID=${id -g} . -t jca-fields2cover:$JOB_NAME")
 				    sh("docker run -v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME")
 				    sh("mv _package deploy")
 				}
