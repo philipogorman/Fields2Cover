@@ -66,8 +66,16 @@ pipeline {
 				sh("ls")
 			}
 		}
-
 		stage('Build Artifacts') {
+		    agent {
+                // Equivalent to "docker build -f Dockerfile.build --build-arg version=1.0.2 ./build/
+                dockerfile {
+                    filename 'Dockerfile.build'
+                    label 'my-defined-label'
+                    additionalBuildArgs  '--build-arg USER_ID=${id -u} --build-arg GROUP_ID=${id -g}'
+                    args '-v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker'
+                }
+            }
 			steps {
 				//Example way of adding extra CONFLICTS if needed, maybe initially needed to transition from
 				//Older packages to newer meta packages
@@ -82,10 +90,11 @@ pipeline {
 				        sh("$build_script -a all -b $release_build -s")
 				    } else {
 				        sh("$build_script -a all -s")
-				    }*/
+				    }
 				    sh ("docker build -f Dockerfile-build --build-arg USER_ID=${id -u} --build-arg GROUP_ID=${id -g} . -t jca-fields2cover:$JOB_NAME")
 				    sh("docker run -v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker jca-fields2cover:$JOB_NAME")
-				    sh("mv _package deploy")
+				    sh("mv _package deploy")*/
+				    sh("/workspace/fields2cover/build_in_docker")
 				}
 
 				sh("$checkpackage_script $binaries")
