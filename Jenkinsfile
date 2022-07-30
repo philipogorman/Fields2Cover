@@ -80,12 +80,8 @@ pipeline {
 				    sh("./build_in_docker")
 				    sh("mv _packages deploy")
 				}
+				archiveArtifacts artifacts: binaries, fingerprint: true
 			}
-		}
-		post {
-		    success {
-		        archiveArtifacts artifacts: binaries, fingerprint: true
-		    }
 		}
 	}
 
