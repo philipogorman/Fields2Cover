@@ -73,7 +73,7 @@ pipeline {
                     label 'Linux-new'
                     filename 'Dockerfile.build'
                     additionalBuildArgs  '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
-                    args '-v $PWD:/workspace/fields2cover -w /workspace/fields2cover --entrypoint /workspace/fields2cover/build_in_docker'
+                    args "-v $PWD:/workspace/fields2cover -w /workspace/fields2cover"
                 }
             }
 			steps {
