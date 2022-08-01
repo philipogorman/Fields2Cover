@@ -73,11 +73,11 @@ pipeline {
                     label 'Linux-new'
                     filename 'Dockerfile.build'
                     additionalBuildArgs  '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
-                    args '-v $PWD/deploy:/deploy'
                 }
             }
 			steps {
 				script {
+				    sh("ls -l")
 				    sh("./build_in_docker")
 				    sh("mv _packages/* deploy/")
 				}
