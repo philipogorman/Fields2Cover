@@ -82,8 +82,8 @@ pipeline {
 				    sh("mv _packages/* deploy/")
 				}
 				stash includes: 'deploy/*', name: 'package'
+				cleanWs()
 			}
-			cleanWs()
 		}
 	}
 
