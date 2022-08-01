@@ -81,6 +81,7 @@ pipeline {
 				    sh("./build_in_docker")
 				    sh("mv _packages/* deploy/")
 				}
+				stash includes: 'deploy/*', name: 'package'
 			}
 		}
 	}
@@ -102,10 +103,7 @@ pipeline {
 		}
 
 		success {
-		    script
-		    {
-		        sh('ls -l')
-		    }
+		    unstash 'package'
 			archiveArtifacts artifacts: binaries, fingerprint: true
 
 			script {
