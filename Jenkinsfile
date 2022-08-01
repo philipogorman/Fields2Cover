@@ -85,6 +85,7 @@ pipeline {
 				stash includes: 'deploy/*', name: 'package'
 			}
 		}
+		cleanWs()
 	}
 
 	post {
