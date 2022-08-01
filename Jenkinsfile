@@ -73,6 +73,7 @@ pipeline {
                     label 'Linux-new'
                     filename 'Dockerfile.build'
                     additionalBuildArgs  '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
+                    reuseNode false
                 }
             }
 			steps {
