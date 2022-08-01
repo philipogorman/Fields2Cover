@@ -77,9 +77,7 @@ pipeline {
             }
 			steps {
 				script {
-				    sh("ls -l")
 				    sh("./build_in_docker")
-				    sh("mv _packages/* deploy/")
 				}
 				stash includes: 'deploy/*', name: 'package'
 				cleanWs()
