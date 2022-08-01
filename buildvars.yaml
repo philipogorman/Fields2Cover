@@ -1,7 +1,0 @@
-JOB_NAME: jca-fields2cover
-VERSION: 0.1.0
-PACKAGE_PRIORITY: optional
-PACKAGE_SECTION: misc
-PACKAGE_MAINTAINER: Kurtis Gibson <kurtis.gibson@jcatechnologies.com>
-JOB_DISPLAY_URL: https://www.jcatechnologies.com
-PACKAGE_DESC: "Contains the JCA version of Fields2Cover."
