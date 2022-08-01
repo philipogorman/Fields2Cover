@@ -73,14 +73,14 @@ pipeline {
                     label 'Linux-new'
                     filename 'Dockerfile.build'
                     additionalBuildArgs  '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
+                    args '-v $PWD/deploy:/deploy'
                 }
             }
 			steps {
 				script {
 				    sh("./build_in_docker")
-				    sh("mv _packages deploy")
+				    sh("mv _packages/* deploy/")
 				}
-				archiveArtifacts artifacts: binaries, fingerprint: true
 			}
 		}
 	}
@@ -102,6 +102,10 @@ pipeline {
 		}
 
 		success {
+		    script
+		    {
+		        sh('ls -l')
+		    }
 			archiveArtifacts artifacts: binaries, fingerprint: true
 
 			script {
