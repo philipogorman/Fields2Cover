@@ -80,8 +80,12 @@ pipeline {
 				    sh("./build_in_docker")
 				}
 				stash includes: 'deploy/*', name: 'package'
-				cleanWs()
 			}
+			post {
+                always {
+                    cleanWs()
+                }
+            }
 		}
 	}
 
