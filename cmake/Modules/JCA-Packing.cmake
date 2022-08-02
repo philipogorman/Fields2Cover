@@ -13,8 +13,7 @@ set(CPACK_VERBATIM_VARIABLES YES)
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
 set(CPACK_OUTPUT_FILE_PREFIX "${CMAKE_SOURCE_DIR}/_packages")
 
-# https://unix.stackexchange.com/a/11552/254512
-set(CPACK_PACKAGING_INSTALL_PREFIX "/opt/some")#/${CMAKE_PROJECT_VERSION}")
+set(CPACK_STRIP_FILES YES)
 
 # https://stackoverflow.com/questions/47066115/cmake-get-version-from-multiline-text-file
 file(READ "VERSION" ver)
@@ -37,17 +36,16 @@ endif()
 message("version: ${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH} build_number: ${VERSION_STRING_BUILD_NUMBER}")
 
 set(CPACK_PACKAGE_CONTACT "kurtis.gibson@jcatechnologies.com")
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Kurtis Gibson")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Kurtis Gibson <${CPACK_PACKAGE_CONTACT}>")
 
 set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.rst")
 
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE amd64)
 # package name for deb
 # if set, then instead of some-application-0.9.2-Linux.deb
 # you'll get some-application_0.9.2_amd64.deb (note the underscores too)
-set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
-
-set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}+b${VERSION_STRING_BUILD_NUMBER}-${CPACK_SYSTEM_NAME}")
+set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}+b${VERSION_STRING_BUILD_NUMBER}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}.deb")
 
 # if you want every group to have its own package,
 # although the same happens if this is not sent (so it defaults to ONE_PER_GROUP)
@@ -55,5 +53,6 @@ set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}+b${V
 set(CPACK_COMPONENTS_GROUPING ALL_COMPONENTS_IN_ONE)#ONE_PER_GROUP)
 # without this you won't be able to pack only specified component
 set(CPACK_DEB_COMPONENT_INSTALL YES)
+set(CPACK_SOURCE_IGNORE_FILES .git dist .*build.* \\\\.DS_Store .dockerignore)
 
 include(CPack)
