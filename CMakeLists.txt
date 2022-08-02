@@ -192,7 +192,7 @@ set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
 export(PACKAGE Fields2Cover)
 
 
-# Packaging support
+# Packaging support - Removed in JCA build
 #set(CPACK_PACKAGE_VENDOR "Wageningen University & Research")
 #set(CPACK_PACKAGE_DESCRIPTION_SUMMARY ${PACKAGE_DESCRIPTION})
 #set(CPACK_PACKAGE_VERSION_MAJOR ${FIELDS2COVER_VERSION_MAJOR})
@@ -236,5 +236,5 @@ if(BUILD_DOC)
   add_subdirectory(docs)
 endif()
 
-include(Packing)
+include(JCA-Packing)
 
