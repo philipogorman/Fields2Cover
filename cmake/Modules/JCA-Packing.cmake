@@ -42,10 +42,22 @@ set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.rst")
 
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE amd64)
-# package name for deb
-# if set, then instead of some-application-0.9.2-Linux.deb
-# you'll get some-application_0.9.2_amd64.deb (note the underscores too)
-set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}+b${VERSION_STRING_BUILD_NUMBER}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}.deb")
+
+if (NOT DEFINED ENV{BRANCH_NAME})
+    set(LOCAL_BRANCH_NAME "-orphan")
+elseif($ENV{BRANCH_NAME} STREQUAL "main")
+    set(LOCAL_BRANCH_NAME "")
+elseif($ENV{BRANCH_NAME} STREQUAL "develop")
+    set(LOCAL_BRANCH_NAME "-wip")
+elseif($ENV{BRANCH_NAME} MATCHES "rc.*")
+    message("ya!!!")
+    set(LOCAL_BRANCH_NAME "-rc")
+else()
+    message("nah!!!")
+    set(LOCAL_BRANCH_NAME "-$ENV{BRANCH_NAME}")
+endif()
+
+set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}${LOCAL_BRANCH_NAME}+b${VERSION_STRING_BUILD_NUMBER}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}.deb")
 
 # if you want every group to have its own package,
 # although the same happens if this is not sent (so it defaults to ONE_PER_GROUP)

@@ -20,6 +20,9 @@ If successfuly, a Debian package will be created in `_packages`.
 ## Version
 The version that is used for the Debian package is set in [VERSION](./VERSION). 
 
+### Dependencies
+See [README.rst](./README.rst) for build dependencies.
+
 ## Installation
 To install this package run `sudo apt install ./<package_name>.deb` with `package_name` substituted with the actual package's name. You can also run `sudo dpkg -i ./<package_name>.deb`.
 
