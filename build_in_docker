@@ -10,6 +10,6 @@ mkdir build
 )
 
 # This user was added in docker build, do this so we can access files outside container
-#chown -R user:user _packages
-#mkdir deploy
-#mv _packages/* deploy/
+chown -R user:user _packages
+mkdir deploy
+mv _packages/* deploy/
