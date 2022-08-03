@@ -31,3 +31,8 @@ To use this package within your CMake project, add the following to your CMake f
 find_package(Fields2Cover REQUIRED)
 target_link_libraries(<<<your_package>>> Fields2Cover)
 ```
+
+## TODO
+- JG-120 - Build other architectures
+- JG-122 - Run tests and publish coverage in Jenkins build
+- 
