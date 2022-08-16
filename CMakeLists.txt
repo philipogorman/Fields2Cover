@@ -170,7 +170,7 @@ write_basic_package_version_file(Fields2CoverConfigVersion.cmake
     VERSION ${PACKAGE_VERSION} COMPATIBILITY AnyNewerVersion)
 
 install(EXPORT Fields2Cover-targets FILE Fields2CoverTargets.cmake
-        DESTINATION ${INSTALL_CMAKE_DIR}/cmake/fields2cover)
+        DESTINATION /usr/share/cmake/fields2cover)
 
 set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
 configure_file(cmake/Fields2CoverConfig.cmake.in
@@ -180,7 +180,7 @@ configure_file(cmake/Fields2CoverConfigVersion.cmake.in
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/Fields2CoverConfig.cmake"
               "${CMAKE_CURRENT_BINARY_DIR}/Fields2CoverConfigVersion.cmake"
-        DESTINATION ${INSTALL_CMAKE_DIR}/cmake/fields2cover)
+        DESTINATION /usr/share/cmake/fields2cover)
 
 export(TARGETS Fields2Cover
   FILE Fields2CoverTargets.cmake)
