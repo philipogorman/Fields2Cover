@@ -28,7 +28,7 @@ To install this package run `sudo apt install ./<package_name>.deb` with `packag
 
 To use this package within your CMake project, add the following to your CMake file:
 ```cmake
-find_package(Fields2Cover REQUIRED)
+find_package(Fields2Cover REQUIRED PATHS /usr/share/cmake)
 target_link_libraries(<<<your_package>>> Fields2Cover)
 ```
 

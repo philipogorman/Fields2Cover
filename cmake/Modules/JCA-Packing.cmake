@@ -1,5 +1,5 @@
 # these are cache variables, so they could be overwritten with -D,
-set(CPACK_PACKAGE_NAME JCAFields2Cover
+set(CPACK_PACKAGE_NAME jca-fields2cover-dev
     CACHE STRING "The resulting package name"
 )
 # which is useful in case of packing only selected components instead of the whole thing
@@ -55,7 +55,8 @@ else()
     set(LOCAL_BRANCH_NAME "-$ENV{BRANCH_NAME}")
 endif()
 
-set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}${LOCAL_BRANCH_NAME}+b${VERSION_STRING_BUILD_NUMBER}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}.deb")
+set(CPACK_PACKAGE_VERSION_PATCH "${CPACK_PACKAGE_VERSION_PATCH}${LOCAL_BRANCH_NAME}+b${VERSION_STRING_BUILD_NUMBER}")
+set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}.deb")
 
 # if you want every group to have its own package,
 # although the same happens if this is not sent (so it defaults to ONE_PER_GROUP)

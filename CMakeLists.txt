@@ -42,7 +42,7 @@ if (WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX "")
 endif ()
 
-set(INSTALL_CMAKE_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/Fields2Cover)
+set(INSTALL_CMAKE_CONFIGDIR /usr/share/cmake/Fields2Cover)
 
 include(GNUInstallDirs)
 
@@ -189,7 +189,7 @@ export(TARGETS Fields2Cover
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-export(PACKAGE Fields2Cover)
+export(PACKAGE fields2cover)
 
 
 # Packaging support - Removed in JCA build
