@@ -97,7 +97,7 @@ foreach(p LIB BIN INCLUDE)
   endif()
 endforeach()
 
-set(INSTALL_CMAKE_DIR "/usr/share")
+set(INSTALL_CMAKE_DIR "/usr/share/")
 
 file(GLOB_RECURSE fields2cover_src 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
