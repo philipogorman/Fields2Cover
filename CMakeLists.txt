@@ -89,12 +89,15 @@ set(INSTALL_INCLUDE_DIR include CACHE PATH
   "Installation directory for header files")
 
 
-foreach(p LIB BIN INCLUDE CMAKE)
+foreach(p LIB BIN INCLUDE)
   set(var INSTALL_${p}_DIR)
   if(NOT IS_ABSOLUTE "${${var}}")
     set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
+    message("Setting to ${${var}}")
   endif()
 endforeach()
+
+set(INSTALL_CMAKE_DIR "/usr/share")
 
 file(GLOB_RECURSE fields2cover_src 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
