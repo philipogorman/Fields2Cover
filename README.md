@@ -31,7 +31,8 @@ To use this package within your CMake project, add the following to your CMake f
 find_package(Fields2Cover REQUIRED PATHS /usr/share/cmake)
 target_link_libraries(<<<your_package>>> Fields2Cover)
 ```
-
+## Related Repos
+See [Path Planner](https://bitbucket.jcaelectronics.ca/projects/JCAG/repos/pathplanner/browse)
 ## TODO
 - JG-120 - Build other architectures
 - JG-122 - Run tests and publish coverage in Jenkins build
