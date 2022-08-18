@@ -1,6 +1,6 @@
 # JCA Fields2Cover Package
 
-JCA build of the [Fields2Cover](https://github.com/Fields2Cover/Fields2Cover) package. Originally forked from the `main` branch at commit `f66a150a78cbca9f7ddc7c953e436d0d94eb506f`. This package contains added features that are required for JCA's path planning. Any bug fixes should be pushed upstream.
+JCA build of the [Fields2Cover](https://github.com/Fields2Cover/Fields2Cover) package. Originally forked from the `main` branch at commit [f66a150a78cbca9f7ddc7c953e436d0d94eb506f](https://github.com/Fields2Cover/Fields2Cover/commit/f66a150a78cbca9f7ddc7c953e436d0d94eb506f) (Jul 28, 2022). This package contains added features that are required for JCA's path planning. Any bug fixes should be pushed upstream.
 
 ## Build
 
