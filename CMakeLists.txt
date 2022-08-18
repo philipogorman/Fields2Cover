@@ -42,7 +42,7 @@ if (WIN32)
   set(CMAKE_SHARED_LIBRARY_PREFIX "")
 endif ()
 
-set(INSTALL_CMAKE_CONFIGDIR ${CMAKE_INSTALL_LIBDIR}/cmake/Fields2Cover)
+set(INSTALL_CMAKE_CONFIGDIR /usr/share/cmake/Fields2Cover)
 
 include(GNUInstallDirs)
 
@@ -89,12 +89,15 @@ set(INSTALL_INCLUDE_DIR include CACHE PATH
   "Installation directory for header files")
 
 
-foreach(p LIB BIN INCLUDE CMAKE)
+foreach(p LIB BIN INCLUDE)
   set(var INSTALL_${p}_DIR)
   if(NOT IS_ABSOLUTE "${${var}}")
     set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
+    message("Setting to ${${var}}")
   endif()
 endforeach()
+
+set(INSTALL_CMAKE_DIR "/usr/share/")
 
 file(GLOB_RECURSE fields2cover_src 
     "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
@@ -170,7 +173,7 @@ write_basic_package_version_file(Fields2CoverConfigVersion.cmake
     VERSION ${PACKAGE_VERSION} COMPATIBILITY AnyNewerVersion)
 
 install(EXPORT Fields2Cover-targets FILE Fields2CoverTargets.cmake
-        DESTINATION ${INSTALL_CMAKE_DIR}/cmake/fields2cover)
+        DESTINATION /usr/share/cmake/fields2cover)
 
 set(CONF_INCLUDE_DIRS "${PROJECT_SOURCE_DIR}" "${PROJECT_BINARY_DIR}")
 configure_file(cmake/Fields2CoverConfig.cmake.in
@@ -180,7 +183,7 @@ configure_file(cmake/Fields2CoverConfigVersion.cmake.in
 
 install(FILES "${CMAKE_CURRENT_BINARY_DIR}/Fields2CoverConfig.cmake"
               "${CMAKE_CURRENT_BINARY_DIR}/Fields2CoverConfigVersion.cmake"
-        DESTINATION ${INSTALL_CMAKE_DIR}/cmake/fields2cover)
+        DESTINATION /usr/share/cmake/fields2cover)
 
 export(TARGETS Fields2Cover
   FILE Fields2CoverTargets.cmake)
@@ -189,20 +192,21 @@ export(TARGETS Fields2Cover
 install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
-export(PACKAGE Fields2Cover)
+export(PACKAGE fields2cover)
 
-# Packaging support
-set(CPACK_PACKAGE_VENDOR "Wageningen University & Research")
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY ${PACKAGE_DESCRIPTION})
-set(CPACK_PACKAGE_VERSION_MAJOR ${FIELDS2COVER_VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR ${FIELDS2COVER_VERSION_MINOR})
-set(CPACK_PACKAGE_VERSION_PATCH ${FIELDS2COVER_VERSION_PATCH})
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.rst")
 
-set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
-set(CPACK_SOURCE_IGNORE_FILES .git dist .*build.* \\\\.DS_Store .dockerignore)
-include(CPack)
+# Packaging support - Removed in JCA build
+#set(CPACK_PACKAGE_VENDOR "Wageningen University & Research")
+#set(CPACK_PACKAGE_DESCRIPTION_SUMMARY ${PACKAGE_DESCRIPTION})
+#set(CPACK_PACKAGE_VERSION_MAJOR ${FIELDS2COVER_VERSION_MAJOR})
+#set(CPACK_PACKAGE_VERSION_MINOR ${FIELDS2COVER_VERSION_MINOR})
+#set(CPACK_PACKAGE_VERSION_PATCH ${FIELDS2COVER_VERSION_PATCH})
+#set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+#set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.rst")
+#
+#set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
+#set(CPACK_SOURCE_IGNORE_FILES .git dist .*build.* \\\\.DS_Store .dockerignore)
+#include(CPack)
 
 
 #####################################################
@@ -234,4 +238,6 @@ endif()  # BUILD_CPP
 if(BUILD_DOC)
   add_subdirectory(docs)
 endif()
+
+include(JCA-Packing)
 
