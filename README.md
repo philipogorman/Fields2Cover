@@ -31,6 +31,27 @@ To use this package within your CMake project, add the following to your CMake f
 find_package(Fields2Cover REQUIRED PATHS /usr/share/cmake)
 target_link_libraries(<<<your_package>>> Fields2Cover)
 ```
+
+## Pulling from Upstream
+
+To pull changes from [Fields2Cover](), do the following:
+```shell
+git checkout develop
+git checkout -b upstream-changes
+git remote add upstream https://github.com/Fields2Cover/Fields2Cover
+git pull upstream
+git merge upstream/main
+git push --set-upstream origin upstream-changes
+```
+
+You can then do a PR to develop. Once you have done this once, you should only have to do the following:
+```shell
+git checkout upstream-changes
+git merge develop
+git pull upstream
+git merge upstream/main
+git push 
+```
 ## Related Repos
 See [Path Planner](https://bitbucket.jcaelectronics.ca/projects/JCAG/repos/pathplanner/browse)
 ## TODO

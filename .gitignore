@@ -1,1 +1,4 @@
 deploy
+build/*
+.vscode/settings.json
+*.log
