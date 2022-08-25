@@ -32,6 +32,10 @@ void Swaths::push_back(const Swath& s) {
   data.push_back(s);
 }
 
+void Swaths::insert(const Swath& s) {
+  data.insert(data.begin(), s);
+}
+
 std::vector<Swath>::iterator Swaths::begin() {
   return data.begin();
 }

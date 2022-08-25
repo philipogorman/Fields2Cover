@@ -29,6 +29,8 @@ struct Swaths {
 
   void push_back(const Swath& s);
 
+  void insert(const Swath& s);
+
   std::vector<Swath>::iterator begin();
   std::vector<Swath>::iterator end();
   std::vector<Swath>::const_iterator begin() const;
