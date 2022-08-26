@@ -96,6 +96,7 @@ void Visualizer::plot(const std::vector<double>& d,
 
 void Visualizer::figure(int id) {
   plt::figure(id);
+  plt::axis("equal");
 }
 void Visualizer::figure() {
   plt::figure();
