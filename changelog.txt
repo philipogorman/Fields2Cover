@@ -1,2 +1,3 @@
 [unreleased]
+    - PAT-29 Fixing memory leak in Point Clone
     - Initial fork from Fields2Cover - commit https://github.com/Fields2Cover/Fields2Cover/commit/f66a150a78cbca9f7ddc7c953e436d0d94eb506f Jul 28, 2022.
