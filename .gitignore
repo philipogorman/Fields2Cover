@@ -2,3 +2,4 @@ deploy
 build/*
 .vscode/settings.json
 *.log
+cmake-build-debug/
