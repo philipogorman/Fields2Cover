@@ -102,6 +102,11 @@ void Visualizer::figure() {
   plt::figure();
 }
 
+void Visualizer::figure_size(size_t w, size_t h) {
+	plt::figure_size(w,h);
+}
+
+
 void Visualizer::show(bool block) {
   plt::show(block);
 }

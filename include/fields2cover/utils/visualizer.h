@@ -69,6 +69,11 @@ class Visualizer {
   /// @param id Identifier of the figure
   static void figure(int id);
 
+	/// set the size of the figure in pixels
+	/// @param w Width
+	/// @param d Height
+	static void figure_size(size_t w, size_t h);
+
   /// Show the figure on screen
   /// @param block if true the program will wait until the screen is closed
   /// to continue
